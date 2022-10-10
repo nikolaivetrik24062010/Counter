@@ -1,4 +1,4 @@
 # Counter
-## Simple counter application using;
+## Simple counter application using MVVM;
 * ViewModel
 * LiveData
