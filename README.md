@@ -1,2 +1,2 @@
 # Counter
-Simple application using ViewModel and LiveData
+## Simple counter application using ViewModel and LiveData
