@@ -1,6 +1,8 @@
 package com.example.counter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -21,14 +23,22 @@ public class MainActivity extends AppCompatActivity {
                 .get(MainActivityViewModel.class);
 
         textView = findViewById(R.id.textView);
-        textView.setText(String.valueOf(model.getCurrentValue()));
+
+        LiveData <Integer> countLiveData = model.getCurrentValue();
+
+        countLiveData.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                textView.setText(String.valueOf(integer));
+            }
+        });
     }
 
     public void decreaseValue(View view) {
-        textView.setText(String.valueOf(model.getDecreasedValue()));
+        model.getDecreasedValue();
     }
 
     public void increaseValue(View view) {
-        textView.setText(String.valueOf(model.getIncreasedValue()));
+        model.getIncreasedValue();
     }
 }
